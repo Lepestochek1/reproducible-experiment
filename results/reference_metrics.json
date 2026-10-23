@@ -1,0 +1,21 @@
+{
+  "runtime": "host",
+  "python": "3.10.2",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "dataset_md5": "35bda8820494391c51e8a008428a5b05",
+  "git_commit": "520b33eb1919b36c6990b5eeb49407f2c26f8320",
+  "runs": {
+    "rf_baseline": {
+      "f1_score": 0.5814084453,
+      "f1_macro": 0.5814084453,
+      "accuracy": 0.5833333333,
+      "roc_auc_ovr": 0.8449074074
+    },
+    "rf_full": {
+      "f1_score": 0.6435095137,
+      "f1_macro": 0.6435095137,
+      "accuracy": 0.6458333333,
+      "roc_auc_ovr": 0.8661747685
+    }
+  }
+}
