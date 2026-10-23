@@ -1,0 +1,34 @@
+{
+  "title": "Reproducible Benchmark Environment for Machine Learning Experiments: weave structure classification from DTD texture images",
+  "description": "<p>Повний відтворюваний пакет обчислювального експерименту, що включає код, Docker-контейнер та зафіксовані логи MLflow. Експеримент – класифікація структур переплетення (woven, knitted, braided, meshed) за ознаками текстур (статистика яскравості, спектр Фур'є, LBP) з Describable Textures Dataset алгоритмом RandomForest; частина магістерського дослідження «Автоматизоване визначення лінійної густини пряжі за цифровими зображеннями тканини».</p><p>A complete reproducible research artifact: source code, Dockerfile and Docker Compose environment, DVC-tracked dataset of texture features, MLflow tracking of hyperparameters and metrics, and reference metrics for verification.</p>",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "language": "ukr",
+  "creators": [
+    {
+      "name": "Kashperuk, T. R.",
+      "affiliation": "Khmelnytskyi National University"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "reproducibility",
+    "machine learning",
+    "docker",
+    "mlflow",
+    "open science",
+    "dvc",
+    "texture classification",
+    "textile",
+    "yarn linear density"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1109/CVPR.2014.461",
+      "relation": "references",
+      "scheme": "doi"
+    }
+  ],
+  "notes": "Experiment for practical work 6 of the course 'Methodology and Organization of Scientific Research', Khmelnytskyi National University, 2026."
+}

@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "Якщо ви використовуєте цей артефакт, будь ласка, цитуйте його так / If you use this artifact, please cite it as below."
+title: "Reproducible Benchmark Environment for Machine Learning Experiments: weave structure classification from DTD texture images"
+type: software
+version: 1.0.0
+date-released: 2026-10-23
+license: MIT
+repository-code: "https://github.com/Lepestochek1/reproducible-experiment"
+authors:
+  - family-names: Kashperuk
+    given-names: T. R.
+    affiliation: Khmelnytskyi National University
+keywords:
+  - reproducibility
+  - machine learning
+  - docker
+  - mlflow
+  - open science
+references:
+  - type: conference-paper
+    title: "Describing Textures in the Wild"
+    authors:
+      - family-names: Cimpoi
+        given-names: Mircea
+      - family-names: Maji
+        given-names: Subhransu
+      - family-names: Kokkinos
+        given-names: Iasonas
+      - family-names: Mohamed
+        given-names: Sammy
+      - family-names: Vedaldi
+        given-names: Andrea
+    year: 2014
+    doi: 10.1109/CVPR.2014.461

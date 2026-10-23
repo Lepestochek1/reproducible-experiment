@@ -1,0 +1,43 @@
+# Незалежне відтворення експерименту в чистому середовищі GitHub Actions (Ubuntu + Docker):
+# збірка образу, запуск контейнера, запуск Docker Compose з сервером MLflow, перевірка метаданих.
+name: reproduce
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check metadata files
+        run: |
+          python -c "import json; [json.load(open(f, encoding='utf-8')) for f in ('zenodo.json', '.zenodo.json')]"
+          cmp zenodo.json .zenodo.json
+
+      - name: Build Docker image
+        run: docker build --build-arg GIT_COMMIT=${{ github.sha }} -t cs-experiment:v1.0 .
+
+      - name: Run experiment in container (file store mlruns)
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/data:/app/data" \
+            -v "${{ github.workspace }}/mlruns:/app/mlruns" \
+            -v "${{ github.workspace }}/results:/app/results" \
+            cs-experiment:v1.0
+
+      - name: Docker Compose (MLflow server + experiment)
+        env:
+          GIT_COMMIT: ${{ github.sha }}
+        run: docker compose up --build --abort-on-container-exit --exit-code-from experiment
+
+      - name: Upload MLflow logs and metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-logs
+          path: |
+            mlruns/
+            results/

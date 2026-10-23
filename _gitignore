@@ -1,0 +1,21 @@
+# Тимчасові файли Python
+__pycache__/
+*.pyc
+
+# Віртуальні оточення
+.venv/
+
+# Локальні сховища MLflow (файлове і сервера Docker Compose)
+mlruns/
+mlartifacts/
+mlflow-server/
+
+# Сирі зображення DTD (завантажуються prepare.py з Hugging Face Hub)
+data/raw/
+
+# Результати конкретного запуску (еталонні метрики – у Git)
+results/metrics_*.json
+
+# Системні файли
+.DS_Store
+Thumbs.db

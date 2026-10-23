@@ -1,0 +1,11 @@
+.git
+.github
+.dvc/cache
+.venv
+__pycache__
+*.pyc
+mlruns
+mlartifacts
+mlflow-server
+data
+results/metrics_*.json

@@ -1,0 +1,34 @@
+# Docker Compose: сервер MLflow + контейнер експерименту.
+# Запуск в один клік:  docker compose up --build
+# Вебінтерфейс MLflow: http://localhost:5000 (сервер працює, доки не натиснути Ctrl+C)
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.11.0@sha256:a94f660a074e1e314e71d66fc7147acbf4a8a02bfaa0b26acd32361eb3891096
+    command: >
+      mlflow server --host 0.0.0.0 --port 5000
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --artifacts-destination /mlflow/artifacts
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow-server:/mlflow
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+
+  experiment:
+    build:
+      context: .
+      args:
+        GIT_COMMIT: ${GIT_COMMIT:-unknown}
+    image: cs-experiment:v1.0
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+    depends_on:
+      mlflow:
+        condition: service_healthy
